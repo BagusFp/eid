@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kartu Ucapan Lebaran</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #0d1b2a;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        margin: 0;
+        padding: 20px;
+        background-image: url("https://i.pinimg.com/originals/e9/8a/1e/e98a1ed91f7a6bcd2909e1a5a4e4b5a8.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      .input-container {
+        background: rgba(27, 38, 59, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        margin-bottom: 20px;
+        backdrop-filter: blur(5px);
+      }
+
+      .card {
+        background: rgba(27, 38, 59, 0.9);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 500px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        display: none;
+        animation: fadeIn 1.5s ease-out;
+        border: 1px solid #ffbe0b;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        color: #ffbe0b;
+        margin-bottom: 20px;
+        font-size: 2rem;
+      }
+
+      #greeting {
+        color: #fff;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      .message {
+        font-style: italic;
+        line-height: 1.6;
+      }
+
+      .signature {
+        margin-top: 30px;
+        font-weight: bold;
+      }
+
+      input {
+        padding: 12px 15px;
+        border: 2px solid #ffbe0b;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.9);
+        width: 250px;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 12px 25px;
+        background-color: #ffbe0b;
+        color: #1b263b;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        margin-left: 10px;
+      }
+
+      button:hover {
+        background-color: #ffd60a;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 190, 11, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="input-container" id="inputContainer">
+      <p>Masukkan nama Anda:</p>
+      <input type="text" id="nameInput" placeholder="Nama Anda" />
+      <button onclick="showGreeting()">Buat Ucapan</button>
+    </div>
+
+    <div class="card" id="greetingCard">
+      <h1>Selamat Hari Raya Idul Fitri 1445 H</h1>
+      <h2 id="greeting"></h2>
+      <p class="message">
+        Mohon maaf lahir dan batin.<br />
+        Semoga di hari yang fitri ini,<br />
+        kita semua kembali suci dan bersih<br />
+        seperti bayi yang baru lahir.<br />
+        Semoga Allah SWT menerima semua amal ibadah kita<br />
+        dan memberikan keberkahan di hari kemenangan ini.
+      </p>
+      <p class="signature" id="signature"></p>
+    </div>
+
+    <script>
+      function showGreeting() {
+        const name = document.getElementById("nameInput").value.trim();
+
+        if (name === "") {
+          alert("Silakan masukkan nama Anda terlebih dahulu");
+          return;
+        }
+
+        document.getElementById(
+          "greeting"
+        ).textContent = `Kepada ${name} dan keluarga,`;
+        document.getElementById("signature").textContent = `Salam hangat,\nbfp`;
+
+        const card = document.getElementById("greetingCard");
+        card.style.display = "block";
+
+        document.getElementById("inputContainer").style.display = "none";
+
+        card.scrollIntoView({ behavior: "smooth" });
+      }
+
+      window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const nameFromUrl = urlParams.get("name");
+
+        if (nameFromUrl) {
+          document.getElementById("nameInput").value = nameFromUrl;
+          showGreeting();
+        }
+      };
+    </script>
+  </body>
+</html>
